@@ -18,8 +18,9 @@ public class MovieController {
 
     private MovieRepository movieRepository;
 
-    @GetMapping("/")
+    @GetMapping(WebConstants.MOVIE)
     public List<Movie> getAll() {
+
         return movieRepository.findAll();
     }
 
