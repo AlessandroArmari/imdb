@@ -22,4 +22,5 @@ public class MovieController {
     public List<Movie> getAll() {
         return movieRepository.findAll();
     }
+
 }
