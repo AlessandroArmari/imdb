@@ -2,6 +2,8 @@ package com.demo.imdb.DTO;
 
 import lombok.*;
 
+import java.time.LocalDate;
+
 @Getter
 @Setter
 @ToString
@@ -9,7 +11,9 @@ import lombok.*;
 @NoArgsConstructor
 public class DirectorDTO {
 
-    private String fullName;
+    private String firstName;
+
+    private String lastName;
 
     private String dob;
 
