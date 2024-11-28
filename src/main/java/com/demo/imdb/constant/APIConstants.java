@@ -3,7 +3,9 @@ package com.demo.imdb.constant;
 
 public class APIConstants {
 
-    public final static String URL_START = "/api";
+
+
+    public final static String API = "/api";
 
 
     //Object
@@ -15,8 +17,6 @@ public class APIConstants {
     public final static String ID = "/id";
 
     public final static String ALL = "/all";
-
-
 
 
 }

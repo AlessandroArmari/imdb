@@ -6,29 +6,30 @@ import com.demo.imdb.mapper.ObjectTransformer;
 import com.demo.imdb.repository.DirectorRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(APIConstants.URL_START)
 @AllArgsConstructor
-public class DirectorController {
+public class DirectorController implements Icontroller<DirectorDTO> {
+
 
     private final ObjectTransformer objectTransformer;
     private final DirectorRepository directorRepository;
+    private final String endpoint = APIConstants.API + APIConstants.DIRECTOR;
 
-    @GetMapping(APIConstants.DIRECTOR+APIConstants.ALL)
+
+    @Override
+    @RequestMapping(endpoint+APIConstants.ALL)
     public Page<DirectorDTO> getAll() {
-
         return null;
     }
 
-    @GetMapping(APIConstants.DIRECTOR+APIConstants.ID)
+    @Override
+    @RequestMapping(endpoint+APIConstants.ID)
     public DirectorDTO getById(@RequestParam Long id) {
-
-        return objectTransformer.toDTO(directorRepository.findById(id).get());
+        return objectTransformer.toDTO(directorRepository.findById(id).orElseThrow(RuntimeException::new));
     }
 
 }

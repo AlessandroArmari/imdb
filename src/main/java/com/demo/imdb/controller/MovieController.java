@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(APIConstants.URL_START)
+@RequestMapping(APIConstants.API)
 @AllArgsConstructor
 public class MovieController {
 
