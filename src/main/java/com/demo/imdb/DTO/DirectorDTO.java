@@ -9,9 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 public class DirectorDTO {
 
-    private String firstName;
-
-    private String lastName;
+    private String fullName;
 
     private String dob;
 
