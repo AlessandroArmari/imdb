@@ -17,7 +17,6 @@ public class DirectorService {
     private final DirectorRepository directorRepository;
 
     public DirectorDTO getById(Long id) {
-
-        return objectTransformer.toDTO(directorRepository.findById(id).orElseThrow(() -> new NotFoundException(ErrorMessageBuilder.notFoundById(Director.class, id))));
+        return objectTransformer.toDTO(directorRepository.findById(id).orElseThrow(() -> NotFoundException.builder().message(ErrorMessageBuilder.notFoundById(Director.class, id)).build()));
     }
 }
