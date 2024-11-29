@@ -4,6 +4,7 @@ import com.demo.imdb.DTO.DirectorDTO;
 import com.demo.imdb.constant.APIConstants;
 import com.demo.imdb.mapper.ObjectTransformer;
 import com.demo.imdb.repository.DirectorRepository;
+import com.demo.imdb.util.exception.NotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,8 +30,7 @@ public class DirectorController implements Icontroller<DirectorDTO> {
     @Override
     @RequestMapping(endpoint+APIConstants.ID)
     public DirectorDTO getById(@RequestParam Long id) {
-        int errore = 10/0;
-        return objectTransformer.toDTO(directorRepository.findById(id).orElseThrow(RuntimeException::new));
+        return objectTransformer.toDTO(directorRepository.findById(id).orElseThrow( () -> new NotFoundException("mess")));
     }
 
 }
