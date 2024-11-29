@@ -29,6 +29,7 @@ public class DirectorController implements Icontroller<DirectorDTO> {
     @Override
     @RequestMapping(endpoint+APIConstants.ID)
     public DirectorDTO getById(@RequestParam Long id) {
+        int errore = 10/0;
         return objectTransformer.toDTO(directorRepository.findById(id).orElseThrow(RuntimeException::new));
     }
 
