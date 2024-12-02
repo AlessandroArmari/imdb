@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.AbstractConverter;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.spi.MappingContext;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -25,7 +24,15 @@ public class ObjectTransformer {
                 .addMappings(mapper -> mapper.map(src -> src.getCountry().getName(), DirectorDTO::setCountry));
 
         return modelMapper.map(directorDAO, DirectorDTO.class);
+    }
 
+    public Director toDAO(DirectorDTO directorDTO) {
+
+        modelMapper.addConverter(fromEuToUsaFormat);
+        //modelMapper.typeMap(DirectorDTO.class, Director.class)
+        //        .addMappings(mapper -> mapper.map(DirectorDTO::getCountry, (director, o) -> director.getCountry().setName(o)));
+
+        return modelMapper.map(directorDTO, Director.class);
     }
 
     //Converter
@@ -34,6 +41,15 @@ public class ObjectTransformer {
         protected String convert(LocalDate usaDate) {
             return usaDate.format(UtilConstants.formatterEU);
         }
+    };
+
+    private final Converter<String, LocalDate> fromEuToUsaFormat = new AbstractConverter<>() {
+
+        @Override
+        protected LocalDate convert(String euDate) {
+            return LocalDate.parse(euDate, UtilConstants.formatterEU);
+        }
+
     };
 
 }

@@ -6,6 +6,7 @@ import com.demo.imdb.service.DirectorService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +19,12 @@ public class DirectorController implements Icontroller<DirectorDTO> {
 
     private final String endpoint = APIConstants.API + APIConstants.DIRECTOR;
     private final DirectorService directorService;
+
+    @Override
+    @RequestMapping(endpoint+APIConstants.SAVE)
+    public DirectorDTO save(@RequestBody DirectorDTO directorDTO) {
+        return directorService.save(directorDTO);
+    }
 
     @Override
     @RequestMapping(endpoint+APIConstants.ALL)

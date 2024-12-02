@@ -18,5 +18,7 @@ public class APIConstants {
 
     public final static String ALL = "/all";
 
+    public final static String SAVE = "/save";
+
 
 }

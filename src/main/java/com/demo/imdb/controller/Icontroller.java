@@ -12,6 +12,7 @@ import java.util.Map;
 
 interface Icontroller<T> {
 
+    T save(T t);
 
     Page<T> getAll(Map<String, String> params, Pageable pageable);
 

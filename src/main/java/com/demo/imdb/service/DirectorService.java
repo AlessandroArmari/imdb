@@ -20,6 +20,14 @@ public class DirectorService {
     private final ObjectTransformer objectTransformer;
     private final DirectorRepository directorRepository;
 
+    public DirectorDTO save(DirectorDTO directorDTO) {
+
+        Director director = objectTransformer.toDAO(directorDTO);
+        directorRepository.save(director);
+        return null;
+
+    }
+
     public Page<DirectorDTO> getAll(Map<String, String> params, Pageable pageable) {
         return directorRepository.findAll(pageable)
                 .map(objectTransformer::toDTO);
