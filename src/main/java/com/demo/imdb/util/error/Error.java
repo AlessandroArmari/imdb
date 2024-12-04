@@ -1,5 +1,6 @@
 package com.demo.imdb.util.error;
 
+import com.demo.imdb.constant.ExceptionConstants;
 import com.demo.imdb.constant.UtilConstants;
 import lombok.*;
 import org.springframework.http.HttpStatus;
@@ -53,15 +54,17 @@ public class Error {
 
     public static Error errorBuilder(Exception ex) {
 
-        System.out.println(ex.getClass().getSimpleName());
+        //lasciato per verificare con debug
+        int num = ExceptionConstants.mapExToStackTraceIndex.getOrDefault(ex.getClass().getSimpleName(), 0);
+
         return Error.builder()
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .message("Not handled exception")
+                .message(ex.getMessage())
                 .consoleMessage(ex.getLocalizedMessage())
                 .user(UtilConstants.UTENTE_DA_DEFINIRE)
-                .declaringClass(ex.getStackTrace()[UtilConstants.mapExToStackTraceIndex.getOrDefault(ex.getClass().getSimpleName(), 0)].getClassName())
-                .method(ex.getStackTrace()[UtilConstants.mapExToStackTraceIndex.getOrDefault(ex.getClass().getSimpleName(), 0)].getMethodName())
-                .lineNumber(ex.getStackTrace()[UtilConstants.mapExToStackTraceIndex.getOrDefault(ex.getClass().getSimpleName(), 0)].getLineNumber())
+                .declaringClass(ex.getStackTrace()[ExceptionConstants.mapExToStackTraceIndex.getOrDefault(ex.getClass().getSimpleName(), 0)].getClassName())
+                .method(ex.getStackTrace()[ExceptionConstants.mapExToStackTraceIndex.getOrDefault(ex.getClass().getSimpleName(), 0)].getMethodName())
+                .lineNumber(ex.getStackTrace()[ExceptionConstants.mapExToStackTraceIndex.getOrDefault(ex.getClass().getSimpleName(), 0)].getLineNumber())
                 .timestamp(Instant.now())
                 .build();
 
