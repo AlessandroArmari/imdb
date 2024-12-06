@@ -6,10 +6,7 @@ import com.demo.imdb.service.DirectorService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -21,19 +18,19 @@ public class DirectorController implements Icontroller<DirectorDTO> {
     private final DirectorService directorService;
 
     @Override
-    @RequestMapping(endpoint+APIConstants.SAVE)
+    @PostMapping(endpoint+APIConstants.SAVE)
     public DirectorDTO save(@RequestBody DirectorDTO directorDTO) {
         return directorService.save(directorDTO);
     }
 
     @Override
-    @RequestMapping(endpoint+APIConstants.ALL)
+    @GetMapping(endpoint+APIConstants.ALL)
     public Page<DirectorDTO> getAll(Map<String, String> params, Pageable pageable) {
         return directorService.getAll(null ,pageable);
     }
 
     @Override
-    @RequestMapping(endpoint+APIConstants.ID)
+    @GetMapping(endpoint+APIConstants.ID)
     public DirectorDTO getById(@RequestParam Long id) {
         return directorService.getById(id);
     }
