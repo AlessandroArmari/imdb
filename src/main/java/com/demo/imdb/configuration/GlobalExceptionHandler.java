@@ -13,17 +13,18 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
+
     @ExceptionHandler(value = {MappingException.class})
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
     public ResponseEntity<Error> handleMappingEx(MappingException mappingException) {
-        Error error =  Error.errorBuilder(mappingException);
+        Error error = Error.errorBuilder(mappingException);
         return ResponseEntity.internalServerError().body(error);
     }
 
     @ExceptionHandler(value = {NotFoundException.class})
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public ResponseEntity<Error> handleNotFoundEx(NotFoundException notFoundException) {
-        Error error =  Error.errorBuilder(notFoundException);
+        Error error = Error.errorBuilder(notFoundException);
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
 
@@ -33,6 +34,20 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         Error error = Error.errorBuilder(unHandledRunTimeException);
         return ResponseEntity.internalServerError().body(error);
     }
+
+    /*
+
+    QUESTA VA IN ECCEZIONE PERCHè QUESTA ECCEZIONE è GIà GESTITA IN FEIGN INTERCEPTOR
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<Object> ddd(MethodArgumentNotValidException e) {
+        StringBuilder strBuilder = new StringBuilder();
+
+
+
+        return null;
+    }
+
+     */
 
 }
 

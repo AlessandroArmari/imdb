@@ -1,8 +1,8 @@
 package com.demo.imdb.DTO;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
-
-import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -11,13 +11,20 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class DirectorDTO {
 
+    @NotBlank
+    @NotNull
     private String firstName;
 
+    @NotBlank
+    @NotNull
     private String lastName;
 
+    @NotBlank
+    @NotNull
     private String dob;
 
+    @NotBlank
+    @NotNull
     private String country;
-
 
 }
