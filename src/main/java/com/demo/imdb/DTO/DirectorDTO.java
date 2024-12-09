@@ -12,19 +12,19 @@ import lombok.*;
 public class DirectorDTO {
 
     @NotBlank
-    @NotNull
+    @NotNull(message = "firstName may not be null")
     private String firstName;
 
     @NotBlank
-    @NotNull
+    @NotNull(message = "lastName may not be null")
     private String lastName;
 
     @NotBlank
-    @NotNull
+    @NotNull(message = "dob may not be null")
     private String dob;
 
     @NotBlank
-    @NotNull
+    @NotNull(message = "country may not be null")
     private String country;
 
 }

@@ -3,6 +3,7 @@ package com.demo.imdb.controller;
 import com.demo.imdb.DTO.DirectorDTO;
 import com.demo.imdb.constant.APIConstants;
 import com.demo.imdb.service.DirectorService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,7 +20,7 @@ public class DirectorController implements Icontroller<DirectorDTO> {
 
     @Override
     @PostMapping(endpoint+APIConstants.SAVE)
-    public DirectorDTO save(@RequestBody DirectorDTO directorDTO) {
+    public DirectorDTO save(@Valid @RequestBody DirectorDTO directorDTO) {
         return directorService.save(directorDTO);
     }
 
